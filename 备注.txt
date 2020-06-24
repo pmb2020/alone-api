@@ -1,0 +1,2 @@
+nginxÎ±¾²Ì¬
+try_files $uri $uri/ /index.php?$query_string;
