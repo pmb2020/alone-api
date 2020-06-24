@@ -10,6 +10,11 @@ echo $_SERVER['REQUEST_URI'];
 // print_r(explode('/', $_SERVER['REQUEST_URI']));
 // echo parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 echo Route('asda','adasd');
+include_once '../core/Route.php';
+include 'testClass.php';
+$sad=new testClass();
+echo testClass::Route();
+echo Route::get('/asd','IndexController@index');
 function Route($route,$controllerPath)
 {
 	return $controllerPath;
