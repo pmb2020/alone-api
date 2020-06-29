@@ -5,6 +5,6 @@ class IndexController{
         echo '我是indexController';
     }
     public function test(){
-        echo '我是testkongzhiq';
+        echo '我是testkongzhiq22';
     }
 }
