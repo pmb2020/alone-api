@@ -12,16 +12,17 @@ if (DEBUG){
     ini_set('display_errors','Off');
 }
 include CORE.'/Alone.php';
+//\core\Alone::run();
+//spl_autoload_register('\core\Alone::load');
 
-spl_autoload_register('\core\Alone::load');
-
-\core\Alone::run();
 include_once CORE.'/Route.php';
+//new Route();
 //加载用户自定义的路由
 include_once ROOTPATH.'/route/api.php';
+
 //Route::get('/v1/getinfo','IndexController@test');
-//Route::get('/v2/getinfo','IndexController@index');
-//Route::get('/v3/getinfo','IndexController@index');
+//Route ::get('/v2/getinfo','IndexController@index');
+//Route::get('/v3/getinfo','VideoController@test');
 //class Human{
 // static public $head=1;
 //  public function easyeat(){

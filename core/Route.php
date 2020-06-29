@@ -1,4 +1,5 @@
 <?php
+
 /**
  * 
  */
@@ -18,6 +19,8 @@ class Route
 	**找url对应的控制器，并自动加载
 	*/
 	static function get($url,$ControllerPath){
+//	    echo $_SERVER['REQUEST_URI'];
+//	    echo $url;
 	    if ($_SERVER['REQUEST_URI']===$url){
 		$arr=explode('@', $ControllerPath);
 		$acticon=$arr[1];
@@ -31,6 +34,7 @@ class Route
                 self::$routeMap[]=$temp;
                 $contro=new $temp();
                 $contro->$acticon();
+                print_r($contro);
             }else{
                 echo '控制器'.$file.'不存在';
             }
@@ -40,7 +44,7 @@ class Route
         }
         }else{
 //	        print_r(self::$routeMap);
-//            echo '404错误';
+            echo '404错误';
 	        return false;
 //	        echo '404错误';
         }
