@@ -5,7 +5,7 @@ class Alone
     public static $classMap=array();
     static public function run(){
         echo 'run ok';
-        $asda=new \core\Route();;
+//        $asda=new Route();;
     }
 
     /**

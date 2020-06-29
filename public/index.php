@@ -16,12 +16,27 @@ include CORE.'/Alone.php';
 spl_autoload_register('\core\Alone::load');
 
 \core\Alone::run();
-$Route=new \core\Route();
-
-$Route::get('/v1/getinfo','IndexController@test');
-$Route::get('/v2/getinfo','IndexController@index');
-$Route::get('/v3/getinfo','IndexController@index');
-
+include_once CORE.'/Route.php';
+//加载用户自定义的路由
+include_once ROOTPATH.'/route/api.php';
+//Route::get('/v1/getinfo','IndexController@test');
+//Route::get('/v2/getinfo','IndexController@index');
+//Route::get('/v3/getinfo','IndexController@index');
+//class Human{
+// static public $head=1;
+//  public function easyeat(){
+//        echo '普通方法吃饭<br />';
+//   }
+//  static public function eat(){
+//            echo '静态方法吃饭<br />';
+//  }
+// public function intro(){
+//            echo $this->name;
+//  }
+// }
+// Human::eat();
+//include CORE.'/Test.php';
+//Test::eat();
 //print_r($Route);
 
 //REQUEST_URI'], PHP_URL_PATH));//解析url,并且转为数组

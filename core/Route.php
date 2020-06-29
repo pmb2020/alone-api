@@ -1,7 +1,4 @@
 <?php
-namespace core;
-use app\Controllers\IndexController;
-
 /**
  * 
  */
@@ -42,7 +39,10 @@ class Route
             $contro->$acticon();
         }
         }else{
-	        echo '404错误';
+//	        print_r(self::$routeMap);
+//            echo '404错误';
+	        return false;
+//	        echo '404错误';
         }
 
 
