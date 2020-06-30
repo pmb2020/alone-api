@@ -12,7 +12,7 @@ if (DEBUG){
 }else{
     ini_set('display_errors','Off');
 }
-include CORE.'Alone.php';
+include CORE.DS.'Alone.php';
 //\core\Alone::run();
 //spl_autoload_register('\core\Alone::load');
 
