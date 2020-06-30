@@ -20,15 +20,15 @@ class Route
 	*/
 	static function get($url,$ControllerPath){
 //	    echo $_SERVER['REQUEST_URI'];
-//	    echo $url;
+//	    echo DS;
 	    if ($_SERVER['REQUEST_URI']===$url){
 		$arr=explode('@', $ControllerPath);
 		$acticon=$arr[1];
 		$controllerValue=$arr[0];
-        $temp='\app\Controllers\\'.$controllerValue;
+        $temp=DS.'app'.DS.'Controllers'.DS.$controllerValue;
 //        print_r($_SERVER['REQUEST_URI']);
         if (!in_array($temp,self::$routeMap)){
-            $file=ROOTPATH.'\app\Controllers\\'.$controllerValue.'.php';
+            $file=ROOTPATH.$temp.'.php';
             if (is_file($file)){
                 include $file;
                 self::$routeMap[]=$temp;

@@ -68,7 +68,7 @@ class VideoController{
         ];
         return json_encode($respose,JSON_UNESCAPED_UNICODE);
     }
-
+    function pregData(){}
     function curlAlone($url){
         $ch=curl_init($url);
         curl_setopt($ch, CURLOPT_HEADER, 0);

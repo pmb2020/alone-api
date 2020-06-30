@@ -3,6 +3,7 @@
 define('APPPATH', trim(__DIR__ . '/'));
 define('ROOTPATH',realpath('../'));
 define('CORE',ROOTPATH.'/core');
+define('DS',DIRECTORY_SEPARATOR);
 define('DEBUG',true);
 //var_dump(ROOTPATH);
 
