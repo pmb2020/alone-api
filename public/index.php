@@ -12,14 +12,14 @@ if (DEBUG){
 }else{
     ini_set('display_errors','Off');
 }
-include CORE.'/Alone.php';
+include CORE.'Alone.php';
 //\core\Alone::run();
 //spl_autoload_register('\core\Alone::load');
 
-include_once CORE.'/Route.php';
+include_once CORE.DS.'Route.php';
 //new Route();
 //加载用户自定义的路由
-include_once ROOTPATH.'/route/api.php';
+include_once ROOTPATH.DS.'route/api.php';
 
 //Route::get('/v1/getinfo','IndexController@test');
 //Route ::get('/v2/getinfo','IndexController@index');

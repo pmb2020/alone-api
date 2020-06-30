@@ -20,7 +20,6 @@ class Route
 	*/
 	static function get($url,$ControllerPath){
 //	    echo $_SERVER['REQUEST_URI'];
-//	    echo DS;
 	    if ($_SERVER['REQUEST_URI']===$url){
 		$arr=explode('@', $ControllerPath);
 		$acticon=$arr[1];
