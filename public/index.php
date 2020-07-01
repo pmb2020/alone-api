@@ -19,7 +19,7 @@ include CORE.DS.'Alone.php';
 include_once CORE.DS.'Route.php';
 //new Route();
 //加载用户自定义的路由
-include_once ROOTPATH.DS.'route/api.php';
+include_once ROOTPATH.DS.'route'.DS.'api.php';
 
 //Route::get('/v1/getinfo','IndexController@test');
 //Route ::get('/v2/getinfo','IndexController@index');
