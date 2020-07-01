@@ -31,7 +31,7 @@ class Route
             if (is_file($file)){
                 include $file;
                 self::$routeMap[]=$temp;
-                $contro=new $temp();
+                $contro=new \app\Controllers\VideoController;
                 $contro->$acticon();
 //                print_r($contro);
             }else{
