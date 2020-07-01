@@ -91,6 +91,54 @@ class VideoController{
                 return $typeData;
         }
     }
+    public function zongyiTypeAll1(){
+        $data=$this->pregData('https://www.360kan.com/zongyi/list');
+        $part1=array_chunk($data, 55);
+        $part2=array_chunk($part1[0], 24);
+        $starData=array_merge($part2[1],$part2[2]);
+        $countryData=$part1[1];
+        $typeData=$part2[0];
+        $arr=[
+            'type'=> $typeData,
+            'country'=>$countryData,
+            'star' => $starData
+        ];
+        echo $this->reposeJson('200','综艺分类信息获取成功',$arr);
+    }
+    public function dianshiTypeAll1(){
+        $data=$this->pregData('https://www.360kan.com/dianshi/list');
+        $part1=array_chunk($data, 45);
+        $part2=array_chunk($part1[0], 36);
+        $part3=array_chunk($part2[0], 21);
+        $starData=$part1[1];
+        $countryData=$part2[1];
+        $yearData=$part3[1];
+        $typeData=$part3[0];
+        $arr=[
+            'type'=> $typeData,
+            'year' => $yearData,
+            'country'=>$countryData,
+            'star' => $starData
+        ];
+        echo $this->reposeJson('200','电视分类信息获取成功',$arr);
+    }
+    public function dianyingTypeAll1(){
+        $arr=$this->pregData('https://www.360kan.com/dianying/list');
+        $part1=array_chunk($arr, 47);
+        $part2=array_chunk($part1[0], 35);
+        $part3=array_chunk($part2[0], 20);
+        $starData=$part1[1];
+        $countryData=$part2[1];
+        $yearData=$part3[1];
+        $typeData=$part3[0];
+        $arr=[
+            'type'=> $typeData,
+            'year' => $yearData,
+            'country'=>$countryData,
+            'star' => $starData
+        ];
+        echo $this->reposeJson('200','电影分类信息获取成功',$arr);
+    }
     public function dongmanTypeAll(){
         $data=$this->pregData('https://www.360kan.com/dongman/list');
         $part1=array_chunk($data, 53);

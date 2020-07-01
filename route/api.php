@@ -22,5 +22,8 @@ Route::get('/v1/video/zongyi/star','VideoController@zongyiStar');
 Route::get('/v1/video/zongyi/country','VideoController@zongyiCountry');
 Route::get('/v1/video/zongyi/type','VideoController@zongyiType');
 
+Route::get('/v1/video/dianying/type/all','VideoController@dianyingTypeAll1');
+Route::get('/v1/video/dianshi/type/all','VideoController@dianshiTypeAll1');
+Route::get('/v1/video/zongyi/type/all','VideoController@zongyiTypeAll1');
 Route::get('/v1/video/dongman/type/all','VideoController@dongmanTypeAll');
 //Route::get('/v2/get','VideoController@test');
