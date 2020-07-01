@@ -1,5 +1,6 @@
 <?php
 namespace app\Controllers;
+header('Access-Control-Allow-Origin: *');
 class VideoController{
     public function index(){
         echo 'video index';
