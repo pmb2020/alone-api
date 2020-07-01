@@ -24,14 +24,14 @@ class Route
 		$arr=explode('@', $ControllerPath);
 		$acticon=$arr[1];
 		$controllerValue=$arr[0];
-        $temp=DS.'app'.DS.'Controllers'.DS.$controllerValue;
-//        print_r($_SERVER['REQUEST_URI']);
-        if (!in_array($temp,self::$routeMap)){
-            $file=ROOTPATH.$temp.'.php';
+        $filePath=DS.'app'.DS.'Controllers'.DS.$controllerValue;
+        $controv='\app\Controllers\\'.$controllerValue;
+        if (!in_array($filePath,self::$routeMap)){
+            $file=ROOTPATH.$filePath.'.php';
             if (is_file($file)){
                 include $file;
-                self::$routeMap[]=$temp;
-                $contro=new \app\Controllers\VideoController;
+                self::$routeMap[]=$filePath;
+                $contro=new $controv;
                 $contro->$acticon();
 //                print_r($contro);
             }else{
