@@ -21,7 +21,7 @@ class Route
 	static function get($url,$ControllerPath){
 //        echo $_SERVER['REQUEST_URI']."</br>";
 //        var_dump(explode('?',$_SERVER['REQUEST_URI'])[0]);
-	    if ($_SERVER['REQUEST_URI']===$url){
+	    if (explode('?',$_SERVER['REQUEST_URI'])[0]===$url){
 		$arr=explode('@', $ControllerPath);
 		$acticon=$arr[1];
 		$controllerValue=$arr[0];
