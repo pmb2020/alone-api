@@ -19,7 +19,8 @@ class Route
 	**找url对应的控制器，并自动加载
 	*/
 	static function get($url,$ControllerPath){
-//	    echo $_SERVER['REQUEST_URI'];
+//        echo $_SERVER['REQUEST_URI']."</br>";
+//        var_dump(explode('?',$_SERVER['REQUEST_URI'])[0]);
 	    if ($_SERVER['REQUEST_URI']===$url){
 		$arr=explode('@', $ControllerPath);
 		$acticon=$arr[1];

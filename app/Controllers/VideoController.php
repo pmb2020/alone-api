@@ -154,21 +154,6 @@ class VideoController{
         echo $this->reposeJson(200,'动漫分类信息获取成功！',$arr);
     }
     public function dianyingTypeAll($type){
-//        $url='https://www.360kan.com/dianying/list';
-//        $html = preg_replace("/\r|\n|\t/","",$this->curlAlone($url));
-//        $rule='/<a class="js-tongjip" href=\"(.*)" target="_self">(.*)<\/a>/iU';
-//        preg_match_all($rule,$html,$typeData);
-//        preg_match('/[\x7f-\xff]+/',$typeData[2][0],$name);
-//        for ($i=0;$i < count($typeData[1]);$i++){
-//            preg_match('/[\x7f-\xff]+/',$typeData[2][$i],$name);
-//            if (!$name){
-//                $name[0]=$typeData[2][$i];
-//            }
-//            $arr[]=[
-//                'name' => $name[0],
-//                'url' => $typeData[1][$i]
-//            ];
-//        }
         $arr=$this->pregData('https://www.360kan.com/dianying/list');
         $part1=array_chunk($arr, 47);
         $part2=array_chunk($part1[0], 35);
@@ -187,11 +172,36 @@ class VideoController{
             default:
                 return $typeData;
         }
-//        $part2=array_chunk(array_merge($part1[1],$part1[2]),15);
-//        $this->dd($typeData);
-//        echo $this->reposeJson('200','success',$arr);
     }
-
+//    获取电视列表信息
+    public function dianshiList(){
+        $ee=$_GET['id'];
+        echo $ee;
+        $url='https://www.360kan.com/dianying/list?rank=rankhot&cat=all&area=all&act=all&year=all&pageno=2';
+        $html=$this->curlAlone($url);
+//        $html = preg_replace("/\r|\n|\t/","",$this->curlAlone($url));
+        $urlRule='/<a class="js-tongjic" href="(.*)">(\s|[\r\n])+<div class="cover g-playicon">/iU';//匹配链接
+        $coverRule='/<div class="cover g-playicon">(\s|[\r\n])+<img src="(.*)">/iU';//匹配出图片$data[2]
+        $titleRule='/<span class="s1">(.*)<\/span>/iU';//匹配出title
+        $starRule='/<p class="star">(.*)<\/p>/iU';//匹配出主演
+        $hintRule='/<div class="mask-wrap">(\s|[\r\n])+<span class="hint">(.*)<\/span>/iU';//更新到第几集，电影则是年份
+        preg_match_all($urlRule,$html,$url);//$url[1]
+        preg_match_all($coverRule,$html,$cover);//$cover[2]
+        preg_match_all($titleRule,$html,$title);//$title[1]
+        preg_match_all($starRule,$html,$star);//$star[1]
+        preg_match_all($hintRule,$html,$hint);//$hint[2]
+        for ($i=0;$i<count($url[1]); $i++){
+            $arr[$i]=[
+                'title'=> $title[1][$i],
+                'cover' => $cover[2][$i],
+                'url' =>  $url[1][$i],
+                'star' => $star[1][$i],
+                'hint' =>$hint[2][$i]
+            ];
+        }
+//        return
+        $this->dd($arr);
+    }
     function pregData($url){
 //        $url='https://www.360kan.com/dianying/list';
         $html = preg_replace("/\r|\n|\t/","",$this->curlAlone($url));
