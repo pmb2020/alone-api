@@ -175,8 +175,9 @@ class VideoController{
     }
 //    获取电视列表信息
     public function dianshiList(){
-        $ee=$_GET['id'];
-        echo $ee;
+        $param=$_GET;
+        print_r($param);
+//        echo $ee;
         $url='https://www.360kan.com/dianying/list?rank=rankhot&cat=all&area=all&act=all&year=all&pageno=2';
         $html=$this->curlAlone($url);
 //        $html = preg_replace("/\r|\n|\t/","",$this->curlAlone($url));
@@ -200,7 +201,7 @@ class VideoController{
             ];
         }
 //        return
-        $this->dd($arr);
+//        $this->dd($arr);
     }
     function pregData($url){
 //        $url='https://www.360kan.com/dianying/list';
