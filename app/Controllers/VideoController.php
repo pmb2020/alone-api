@@ -175,10 +175,29 @@ class VideoController{
     }
 //    获取电视列表信息
     public function dianshiList(){
+        echo $this->videoList('dianshi');
+    }
+//    获取电影列表信息
+    public function dianyingList(){
+        echo $this->videoList('dianying');
+    }
+//    获取综艺列表信息
+    public function zongyiList(){
+        echo $this->videoList('zongyi');
+    }
+//    获取动漫列表信息
+    public function dongmanList(){
+        echo $this->videoList('dongman');
+    }
+    public function videoList($type){
         $param=$_GET;
-        print_r($param);
-//        echo $ee;
-        $url='https://www.360kan.com/dianying/list?rank=rankhot&cat=all&area=all&act=all&year=all&pageno=2';
+        $cat=$param['cat'] ?: 'all';
+        $year=$param['year'] ?: 'all';
+        $area=$param['area'] ?: 'all';
+        $act=$param['act'] ?: 'all';
+        $pageno=$param['page'] ?: '1';
+        $url='https://www.360kan.com/dianshi/list?cat=101&year=2020&area=10&act=all&pageno=2';
+        $url='https://www.360kan.com/'.$type.'/list?cat='.$cat.'&year='.$year.'&area='.$area.'&act='.$act.'&pageno='.$pageno;
         $html=$this->curlAlone($url);
 //        $html = preg_replace("/\r|\n|\t/","",$this->curlAlone($url));
         $urlRule='/<a class="js-tongjic" href="(.*)">(\s|[\r\n])+<div class="cover g-playicon">/iU';//匹配链接
@@ -200,8 +219,7 @@ class VideoController{
                 'hint' =>$hint[2][$i]
             ];
         }
-//        return
-//        $this->dd($arr);
+        return $this->reposeJson(200,'success',$arr);
     }
     function pregData($url){
 //        $url='https://www.360kan.com/dianying/list';
