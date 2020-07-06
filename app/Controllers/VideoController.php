@@ -221,6 +221,32 @@ class VideoController{
         }
         return $this->reposeJson(200,'success',$arr);
     }
+
+    function videoInfo(){
+//        echo 'info';
+        $url='https://www.360kan.com/m/faTnYRH6Q0f7UR.html';
+        $html = preg_replace("/\r|\n|\t/","",$this->curlAlone($url));
+        $titleRule='/<div class="title-left g-clear">(\s|[\r\n])+<h1>(.*)<\/h1>/iU';
+        $descRule='/<p class="item-desc">(.*)<a href="#"/iU';
+        $yearRule='/<p class="item"><span>年代 ：<\/span>(.*)<\/p>/iU';
+        $daoyanRule='/<span>导演 ：<\/span>(\s|[\r\n])+<a class="name" href="(.*)">(.*)<\/a>/iU';
+        $actorRule='/<p class="item item-actor">(.*)<\/p>/iU';
+        preg_match_all($titleRule,$html,$title);//$title[2][0]
+        preg_match_all($descRule,$html,$desc);//$desc[1][1]
+        preg_match_all($yearRule,$html,$year);//$year[1][0]
+        preg_match_all($daoyanRule,$html,$daoyan);//$daoyan[3][0]
+        preg_match_all($actorRule,$html,$actor);//演员
+        preg_match_all('/<a class="name" href="[\s\S]*">(.*)<\/a>/iU',$actor[0][0],$actor);//$actor[1]
+//        print_r($desc);
+        $arr=[
+            'title' =>$title[2][0],
+            'daoyan' =>$daoyan[3][0],
+            'actor'=>$actor[1],
+            'year' => $year[1][0],
+            'desc' => $desc[1][1],
+        ];
+        echo $this->reposeJson(200,'success',$arr);
+    }
     function pregData($url){
 //        $url='https://www.360kan.com/dianying/list';
         $html = preg_replace("/\r|\n|\t/","",$this->curlAlone($url));

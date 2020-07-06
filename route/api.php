@@ -27,7 +27,10 @@ Route::get('/v1/video/dianshi/type/all','VideoController@dianshiTypeAll1');
 Route::get('/v1/video/zongyi/type/all','VideoController@zongyiTypeAll1');
 Route::get('/v1/video/dongman/type/all','VideoController@dianshiList');
 
+//获取360影视的视频列表
 Route::get('/v1/video/dianshi/list','VideoController@dianshiList');
 Route::get('/v1/video/dianying/list','VideoController@dianyingList');
 Route::get('/v1/video/zongyi/list','VideoController@zongyiList');
 Route::get('/v1/video/dongman/list','VideoController@dongmanList');
+
+Route::get('/v1/video/dianying/info','VideoController@videoInfo');
