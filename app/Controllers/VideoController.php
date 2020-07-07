@@ -224,22 +224,30 @@ class VideoController{
 
     function videoInfo(){
 //        echo 'info';
-        $url='https://www.360kan.com/m/faTnYRH6Q0f7UR.html';
+        $url='https://www.360kan.com/tv/PrRtaH7lSG8qMX.html';
         $html = preg_replace("/\r|\n|\t/","",$this->curlAlone($url));
         $titleRule='/<div class="title-left g-clear">(\s|[\r\n])+<h1>(.*)<\/h1>/iU';
         $descRule='/<p class="item-desc">(.*)<a href="#"/iU';
         $yearRule='/<p class="item"><span>年代 ：<\/span>(.*)<\/p>/iU';
         $daoyanRule='/<span>导演 ：<\/span>(\s|[\r\n])+<a class="name" href="(.*)">(.*)<\/a>/iU';
         $actorRule='/<p class="item item-actor">(.*)<\/p>/iU';
+        $coverRule='/<a href="[\s\S]*" class="g-playicon s-cover-img"[\s\S]*<img src="(.*)">[\s\S]*<\/a>/iU';
+        $jishuRule1='/<div class="num-tab-main[\s\S]*"[\s\S]*>+(.*)<\/div>/iU';
+        $jishuRule2='/<a data-num="(.*)" data-daochu="[\s\S]*" href="(.*)">[\s\S]*<\/a>/iU';
         preg_match_all($titleRule,$html,$title);//$title[2][0]
         preg_match_all($descRule,$html,$desc);//$desc[1][1]
+        preg_match_all($coverRule,$html,$cover);
         preg_match_all($yearRule,$html,$year);//$year[1][0]
         preg_match_all($daoyanRule,$html,$daoyan);//$daoyan[3][0]
         preg_match_all($actorRule,$html,$actor);//演员
         preg_match_all('/<a class="name" href="[\s\S]*">(.*)<\/a>/iU',$actor[0][0],$actor);//$actor[1]
-//        print_r($desc);
+        preg_match_all($jishuRule1,$html,$jishu1);
+        preg_match_all($jishuRule2,$jishu1[1][0],$jishu);
+        print_r($jishu);
+        exit();
         $arr=[
             'title' =>$title[2][0],
+            'cover' => $cover[1][0],
             'daoyan' =>$daoyan[3][0],
             'actor'=>$actor[1],
             'year' => $year[1][0],
